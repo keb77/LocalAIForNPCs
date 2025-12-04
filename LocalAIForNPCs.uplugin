@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "LocalAIForNPCs",
+	"Description": "Provides local AI-powered interaction for NPCs using on-device LLMs, speech recognition, and text-to-speech. Enables real-time dialogue and dynamic NPC behaviors without external cloud services.",
+	"Category": "Other",
+	"CreatedBy": "Federico Solinas",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "LocalAIForNPCs",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
