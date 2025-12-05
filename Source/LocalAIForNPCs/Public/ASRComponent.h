@@ -26,37 +26,37 @@ class LOCALAIFORNPCS_API UASRComponent : public UActorComponent
 public:
     UASRComponent();
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | ASR", meta = (ToolTip = "Port of the whisper.cpp server used for speech-to-text."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|ASR", meta = (ToolTip = "Port of the whisper.cpp server used for speech-to-text."))
     int32 Port = 8000;
 
-    UFUNCTION(BlueprintCallable, Category = "LocalAIForNPCs | ASR", meta = (ToolTip = "Begin capturing microphone audio for transcription."))
+    UFUNCTION(BlueprintCallable, Category = "LocalAIForNPCs|ASR", meta = (ToolTip = "Begin capturing microphone audio for transcription."))
     void StartRecording();
 
-    UFUNCTION(BlueprintCallable, Category = "LocalAIForNPCs | ASR", meta = (ToolTip = "Stop audio capture and return the recorded file path."))
+    UFUNCTION(BlueprintCallable, Category = "LocalAIForNPCs|ASR", meta = (ToolTip = "Stop audio capture and return the recorded file path."))
     FString StopRecording();
 
-    UFUNCTION(BlueprintCallable, Category = "LocalAIForNPCs | ASR", meta = (ToolTip = "Transcribe the specified audio file using whisper.cpp."))
+    UFUNCTION(BlueprintCallable, Category = "LocalAIForNPCs|ASR", meta = (ToolTip = "Transcribe the specified audio file using whisper.cpp."))
     void TranscribeAudio(const FString& AudioPath);
 
-    UPROPERTY(BlueprintAssignable, Category = "LocalAIForNPCs | ASR", meta = (ToolTip = "Event fired when audio transcription is complete."))
+    UPROPERTY(BlueprintAssignable, Category = "LocalAIForNPCs|ASR", meta = (ToolTip = "Event fired when audio transcription is complete."))
     FOnTranscriptionComplete OnTranscriptionComplete;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | ASR | VAD", meta = (ToolTip = "Voice Activity Detection mode for automatic speech segmentation."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|ASR|VAD", meta = (ToolTip = "Voice Activity Detection mode for automatic speech segmentation."))
     EVadMode VadMode = EVadMode::Disabled;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | ASR | VAD", meta = (EditCondition = "VadMode != EVadMode::Disabled", EditConditionHides, ClampMin = "0.1", ToolTip = "Duration of silence (in seconds) required to finalize a speech segment."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|ASR|VAD", meta = (EditCondition = "VadMode != EVadMode::Disabled", EditConditionHides, ClampMin = "0.1", ToolTip = "Duration of silence (in seconds) required to finalize a speech segment."))
     float SecondsOfSilenceBeforeSend = 2.0f;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | ASR | VAD", meta = (EditCondition = "VadMode != EVadMode::Disabled", EditConditionHides, ClampMin = "0.1", ToolTip = "Minimum speech duration (in seconds) before audio is accepted for transcription."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|ASR|VAD", meta = (EditCondition = "VadMode != EVadMode::Disabled", EditConditionHides, ClampMin = "0.1", ToolTip = "Minimum speech duration (in seconds) before audio is accepted for transcription."))
     float MinSpeechDuration = 0.5f;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | ASR | VAD", meta = (EditCondition = "VadMode == EVadMode::EnergyBased", EditConditionHides, ClampMin = "0.0", ClampMax = "1.0", ToolTip = "Energy threshold for speech detection when using Energy-based VAD."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|ASR|VAD", meta = (EditCondition = "VadMode == EVadMode::EnergyBased", EditConditionHides, ClampMin = "0.0", ClampMax = "1.0", ToolTip = "Energy threshold for speech detection when using Energy-based VAD."))
     float EnergyThreshold = 0.1f;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | ASR | VAD", meta = (EditCondition = "VadMode == EVadMode::WebRTC", EditConditionHides, ClampMin = "0", ClampMax = "3", ToolTip = "Aggressiveness level for WebRTC VAD (0–3). Higher values filter more noise."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|ASR|VAD", meta = (EditCondition = "VadMode == EVadMode::WebRTC", EditConditionHides, ClampMin = "0", ClampMax = "3", ToolTip = "Aggressiveness level for WebRTC VAD (0–3). Higher values filter more noise."))
     int32 WebRtcVadAggressiveness = 3;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | ASR | VAD", meta = (EditCondition = "VadMode == EVadMode::TEN", EditConditionHides, ClampMin = "0", ClampMax = "1", ToolTip = "Confidence threshold for speech detection when using TEN VAD."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|ASR|VAD", meta = (EditCondition = "VadMode == EVadMode::TEN", EditConditionHides, ClampMin = "0", ClampMax = "1", ToolTip = "Confidence threshold for speech detection when using TEN VAD."))
     float TenVadThreshold = 0.75f;
 
 private:

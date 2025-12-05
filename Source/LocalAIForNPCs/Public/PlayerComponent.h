@@ -18,10 +18,10 @@ class LOCALAIFORNPCS_API UPlayerComponent : public USceneComponent
 public:
     UPlayerComponent();
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | General", meta = (ToolTip = "Display name for the player character."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|General", meta = (ToolTip = "Display name for the player character."))
     FString Name = TEXT("You");
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | General", meta = (ClampMin = "0.0", ToolTip = "Maximum distance at which the player can interact with NPCs."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|General", meta = (ClampMin = "0.0", ToolTip = "Maximum distance at which the player can interact with NPCs."))
     float InteractionRadius = 1000.f;
 
     UFUNCTION(BlueprintCallable, Category = "LocalAIForNPCs", meta = (ToolTip = "Begin recording player speech to send to NPCs."))
@@ -33,40 +33,40 @@ public:
     UFUNCTION(BlueprintCallable, Category = "LocalAIForNPCs", meta = (ToolTip = "Send a text message from the player to the NPC for processing by the LLM."))
     void SendText(const FString& Input);
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | UI", meta = (ToolTip = "Widget class used for displaying the player chat interface. Set this to W_ChatWidget."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|UI", meta = (ToolTip = "Widget class used for displaying the player chat interface. Set this to W_ChatWidget."))
     TSubclassOf<UUserWidget> ChatWidgetClass;
 
-    UPROPERTY(BlueprintReadOnly, Category = "LocalAIForNPCs | UI", meta = (ToolTip = "Instance of the player chat widget, created at runtime."))
+    UPROPERTY(BlueprintReadOnly, Category = "LocalAIForNPCs|UI", meta = (ToolTip = "Instance of the player chat widget, created at runtime."))
     UChatWidget* ChatWidgetInstance;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | Input", meta = (ToolTip = "Input mapping context used to bind player actions for LocalAI interactions. Set this to IMC_Player."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|Input", meta = (ToolTip = "Input mapping context used to bind player actions for LocalAI interactions. Set this to IMC_Player."))
     UInputMappingContext* PlayerMappingContext;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | Input", meta = (ToolTip = "Input action for push-to-talk functionality. Set this to IA_PushToTalk."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|Input", meta = (ToolTip = "Input action for push-to-talk functionality. Set this to IA_PushToTalk."))
     UInputAction* PushToTalkAction;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | Input", meta = (ToolTip = "Input action to focus or open the chat interface. Set this to IA_FocusChat."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|Input", meta = (ToolTip = "Input action to focus or open the chat interface. Set this to IA_FocusChat."))
     UInputAction* FocusChatAction;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | ASR", meta = (ToolTip = "Port of the whisper.cpp server used for speech-to-text."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|VAD", meta = (EditCondition = "VadMode != EVadMode::Disabled", EditConditionHides, ToolTip = "Port of the whisper.cpp server used for speech-to-text."))
     int32 ASRPort = 8000;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | ASR | VAD", meta = (ToolTip = "Voice Activity Detection mode for automatic speech segmentation."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|VAD", meta = (ToolTip = "Voice Activity Detection mode for automatic speech segmentation."))
     EVadMode VadMode = EVadMode::Disabled;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | ASR | VAD", meta = (EditCondition = "VadMode != EVadMode::Disabled", EditConditionHides, ClampMin = "0.1", ToolTip = "Duration of silence (in seconds) required to finalize a speech segment."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|VAD", meta = (EditCondition = "VadMode != EVadMode::Disabled", EditConditionHides, ClampMin = "0.1", ToolTip = "Duration of silence (in seconds) required to finalize a speech segment."))
     float SecondsOfSilenceBeforeSend = 2.0f;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | ASR | VAD", meta = (EditCondition = "VadMode != EVadMode::Disabled", EditConditionHides, ClampMin = "0.1", ToolTip = "Minimum speech duration (in seconds) before audio is accepted for transcription."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|VAD", meta = (EditCondition = "VadMode != EVadMode::Disabled", EditConditionHides, ClampMin = "0.1", ToolTip = "Minimum speech duration (in seconds) before audio is accepted for transcription."))
     float MinSpeechDuration = 0.5f;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | ASR | VAD", meta = (EditCondition = "VadMode == EVadMode::EnergyBased", EditConditionHides, ClampMin = "0.0", ClampMax = "1.0", ToolTip = "Energy threshold for speech detection when using Energy-based VAD."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|VAD", meta = (EditCondition = "VadMode == EVadMode::EnergyBased", EditConditionHides, ClampMin = "0.0", ClampMax = "1.0", ToolTip = "Energy threshold for speech detection when using Energy-based VAD."))
     float EnergyThreshold = 0.1f;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | ASR | VAD", meta = (EditCondition = "VadMode == EVadMode::WebRTC", EditConditionHides, ClampMin = "0", ClampMax = "3", ToolTip = "Aggressiveness level for WebRTC VAD (0–3). Higher values filter more noise."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|VAD", meta = (EditCondition = "VadMode == EVadMode::WebRTC", EditConditionHides, ClampMin = "0", ClampMax = "3", ToolTip = "Aggressiveness level for WebRTC VAD (0–3). Higher values filter more noise."))
     int32 WebRtcVadAggressiveness = 3;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | ASR | VAD", meta = (EditCondition = "VadMode == EVadMode::TEN", EditConditionHides, ClampMin = "0", ClampMax = "1", ToolTip = "Confidence threshold for speech detection when using TEN VAD."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|VAD", meta = (EditCondition = "VadMode == EVadMode::TEN", EditConditionHides, ClampMin = "0", ClampMax = "1", ToolTip = "Confidence threshold for speech detection when using TEN VAD."))
     float TenVadThreshold = 0.75f;
 
 private:

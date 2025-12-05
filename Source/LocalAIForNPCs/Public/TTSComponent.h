@@ -42,31 +42,31 @@ class LOCALAIFORNPCS_API UTTSComponent : public USceneComponent
 public:
     UTTSComponent();
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | TTS", meta = (ToolTip = "Port used to communicate with the Kokoro-FastAPI TTS server."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|TTS", meta = (ToolTip = "Port used to communicate with the Kokoro-FastAPI TTS server."))
     int32 Port = 8880;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | TTS", meta = (ToolTip = "Name of the voice to use when generating speech."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|TTS", meta = (ToolTip = "Name of the voice to use when generating speech."))
     FString Voice;
 
-    UFUNCTION(BlueprintCallable, Category = "LocalAIForNPCs | TTS", meta = (ToolTip = "Generate a SoundWave from the given text."))
+    UFUNCTION(BlueprintCallable, Category = "LocalAIForNPCs|TTS", meta = (ToolTip = "Generate a SoundWave from the given text."))
     void CreateSoundWave(const FString& Text);
 
-    UPROPERTY(BlueprintAssignable, Category = "LocalAIForNPCs | TTS", meta = (ToolTip = "Event fired when a SoundWave is ready for playback."))
+    UPROPERTY(BlueprintAssignable, Category = "LocalAIForNPCs|TTS", meta = (ToolTip = "Event fired when a SoundWave is ready for playback."))
     FOnSoundReady OnSoundReady;
 
-    UFUNCTION(BlueprintCallable, Category = "LocalAIForNPCs | TTS", meta = (ToolTip = "Play raw audio data as speech."))
+    UFUNCTION(BlueprintCallable, Category = "LocalAIForNPCs|TTS", meta = (ToolTip = "Play raw audio data as speech."))
     void PlaySpeech(const TArray<uint8>& AudioData);
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | TTS | LipSync", meta = (ToolTip = "Select which lip-sync system to use with generated speech."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|TTS|LipSync", meta = (ToolTip = "Select which lip-sync system to use with generated speech."))
     ELipSyncMode LipSyncMode = ELipSyncMode::Disabled;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | TTS | LipSync", meta = (EditCondition = "LipSyncMode == ELipSyncMode::NeuroSync", EditConditionHides, ToolTip = "Port used to communicate with the NeuroSync lip-sync server."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|TTS|LipSync", meta = (EditCondition = "LipSyncMode == ELipSyncMode::NeuroSync", EditConditionHides, ToolTip = "Port used to communicate with the NeuroSync lip-sync server."))
     int32 NeuroSyncPort = 8881;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | TTS | LipSync", meta = (EditCondition = "LipSyncMode == ELipSyncMode::NeuroSync", EditConditionHides, ToolTip = "Face subject name used by the NeuroSync server to identify the target face mesh. Set the LiveLink FaceSubject to the same name."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|TTS|LipSync", meta = (EditCondition = "LipSyncMode == ELipSyncMode::NeuroSync", EditConditionHides, ToolTip = "Face subject name used by the NeuroSync server to identify the target face mesh. Set the LiveLink FaceSubject to the same name."))
     FString FaceSubjectName = TEXT("face1");
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs | TTS | LipSync", meta = (EditCondition = "LipSyncMode == ELipSyncMode::Audio2Face", EditConditionHides, ToolTip = "Provider name used for NVIDIA Audio2Face lip-sync generation."))
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalAIForNPCs|TTS|LipSync", meta = (EditCondition = "LipSyncMode == ELipSyncMode::Audio2Face", EditConditionHides, ToolTip = "Provider name used for NVIDIA Audio2Face lip-sync generation."))
     FString Audio2FaceProvider = TEXT("LocalA2F-Mark");
 
 private:
