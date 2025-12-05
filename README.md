@@ -71,9 +71,10 @@ uv run --no-sync python docker/scripts/download_model.py --output api/src/models
 ### LipSync — NeuroSync or Audio2Face
 
 #### **NeuroSync**
+- Run `Source/ThirdParty/NeuroSync/generate_executable.bat`
 - Follow setup instructions: 
-  https://github.com/AnimaVR/NeuroSync_Local_API  
-- Start using `neurosync_local_api.py` (recommended: change port in script to 8881)
+  https://github.com/AnimaVR/NeuroSync_Local_API
+- Start the server using `neurosync_local_api.py` (recommended: change port in script to 8881)
 
 #### **Audio2Face**
 - Download plugins and models:  
