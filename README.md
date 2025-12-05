@@ -68,7 +68,7 @@ For reliable offline startup, remove these lines from the startup script (after 
 <pre> uv pip install -e ".[cpu]" / ".[gpu]"
 uv run --no-sync python docker/scripts/download_model.py --output api/src/models/v1_0 </pre>
 
-### LipSync — NeuroSync or Audio2Face
+### LipSync — NeuroSync or Audio2Face (recommended to use with MetaHumans)
 
 #### **NeuroSync**
 - Run `Source/ThirdParty/NeuroSync/generate_executable.bat`
@@ -94,8 +94,8 @@ uv run --no-sync python docker/scripts/download_model.py --output api/src/models
 
 3. **Add Components to Actors**
    - **Recommended setup:**  
-     - Add **NPCComponent** to NPC Actor(s)  
-     - Add **PlayerComponent** to the player Pawn  
+     - Add **NPCComponent** to NPC Actor(s). If NPC is a MetaHuman, attach it to its Face, enable Generate Overlap Events, and set Collision Preset to Pawn.
+     - Add **PlayerComponent** to the player Pawn.
    - **Partial / custom setups:**  
      Add **ASRComponent**, **LLMComponent**, or **TTSComponent** individually if you only need part of the pipeline.  
      Note that **PlayerComponent** only integrates with NPCComponent, otherwise interaction must be custom-handled.
