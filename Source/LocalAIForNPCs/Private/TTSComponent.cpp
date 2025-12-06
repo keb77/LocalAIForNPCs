@@ -379,7 +379,7 @@ void UTTSComponent::PlayNextNeuroInQueue()
     FString TempFilePath = FPaths::Combine(OutputAudioFolder, FString::Printf(TEXT("blendshapes-%s.txt"), *Guid));
     FFileHelper::SaveStringToFile(BlendshapeString, *TempFilePath);
 
-    FString ScriptPath = FPaths::Combine(FPaths::ProjectPluginsDir(), TEXT("LocalNpcAIPlugin"), TEXT("Source"), TEXT("ThirdParty"),
+    FString ScriptPath = FPaths::Combine(FPaths::ProjectPluginsDir(), TEXT("LocalAIForNPCs"), TEXT("Source"), TEXT("ThirdParty"),
         TEXT("NeuroSync"), TEXT("dist"), TEXT("run_neurosync"), TEXT("run_neurosync.exe"));
 
     Async(EAsyncExecution::Thread, [this, ScriptPath, TempFilePath, Sound]()
